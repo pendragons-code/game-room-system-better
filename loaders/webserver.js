@@ -24,7 +24,7 @@ app.use(helmet({
 	contentSecurityPolicy: false,
 	nosniff: true,
 	xssFilter: true,
-	hsts: { maxAge: 31536000, includesSubDomiains: true }
+	hsts: { maxAge: 31536000, includesSubDomains: true }
 }));
 
 app.use(function(req, res, next){

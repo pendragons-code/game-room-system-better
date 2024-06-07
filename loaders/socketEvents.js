@@ -10,13 +10,12 @@ const rooms = {};
 modue.exports.rooms = rooms;
 
 io.on("connection", (socket) => {
-	let currentRoom;
 
 	// joining room
 	socket.on("joinRoom", (roomID) => {
 		try {
 			let playerID = socket.id;
-			currentRoom = rooms[roomID];
+			let currentRoom = rooms[roomID]; // i don't want to pollute the global
 			if(!currentRoom) return socket.emit("This room does not exist.");
 			if(currentRoom.gameState !== "waiting") return socket.emit("alert", "This room has already started the game!");
 			if(currentRoom.playerNumber.length >= config.maxPlayersPerRoom) return socket.emit("alert", "This room has reached the max capacity");
@@ -54,7 +53,7 @@ io.on("connection", (socket) => {
 	// starting game
 	socket.on("startGame", (roomID) => {
 		try {
-			currentRoom = rooms[roomID];
+			let currentRoom = rooms[roomID];
 			let gameInitiator = socket.id;
 			if(!currentRoom) return socket.emit("roomDoesNotExist");
 			if(gameInitiator !== currentRoom.creator) return socket.emit("alert", "You are not the creator and cannot perform that action!");
