@@ -24,7 +24,7 @@ io.on("connection", (socket) => {
 			socket.join(roomID);
 			currentRoom.addPlayer(playerID);
 			socket.emit("joinRoomAcknowledgement");
-			console.log(`${playerID} joined ${JSON.stringify(currentRoom.id)}`);
+			console.log(`${playerID} joined ${JSON.stringify(currentRoom.roomID)}`);
 			playersInRooms.set(playerID, roomID);
 			return;
 		} catch(error) {
