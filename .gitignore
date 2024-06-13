@@ -4,3 +4,4 @@ node_modules
 DATABASE
 .env.production
 .env.development
+Logs
