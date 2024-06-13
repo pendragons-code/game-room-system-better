@@ -1,0 +1,155 @@
+@font-face {
+	font-family: 'KGCornerOftheSky';
+	font-style: normal;
+	font-weight: 400;
+	src: local('KGCornerOftheSky'), url('https://fonts.cdnfonts.com/s/48444/KGCorneroftheSky.woff') format('woff');
+}
+
+body {
+	animation: fadeIn linear 1s;
+	-webkit-animation: fadeIn linear 1s;
+	-moz-animation: fadeIn linear 1s;
+	-o-animation: fadeIn linear 1;
+	font-family: KGCornerOftheSky;
+	color: #fb6f92;
+	background-color: #eac4d5;
+}
+
+button {
+	font-family: KGCornerOftheSky;
+	background-color: #eac4d5;
+	color: #fb6f92;
+	border: 3px solid #fb6f92;
+	border-radius: 30px;
+	padding: 5px;
+}
+
+
+button:hover {
+	font-family: KGCornerOftheSky;
+	background-color: #fb6f92;
+	color: #eac4d5;
+	border: 3px solid #fb6f92;
+	border-radius: 30px;
+	padding: 5px;
+}
+
+input {
+	font-family: KGCornerOftheSky;
+	color: #fb6f92;
+	background-color: #eac4d5;
+	border: 3px solid #fb6f92;
+	border-radius: 30px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.gamePlay {
+	overflow: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: 0 auto;
+	width: 50%;
+	width: 80%;
+	margin: 0 auto;
+	padding: 20px;
+	justify-content: center;
+	border-radius: 30px;
+	color: #fb6f92;
+	text-align: center;
+	border: 3px solid #fb6f92;
+	align-items: center;
+}
+
+
+.gameSettings {
+	min-width: 90%;
+	min-height: 4vh;
+	align-items: center;
+	padding: 20px;
+	border-radius: 30px;
+	color: #fb6f92;
+	border: 3px solid #fb6f92;
+}
+
+.roomDets {
+	position: absolute;
+	margin: 0 auto;
+	top: 18%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	border-radius: 30px;
+	color: #fb6f92;
+	border: 3px solid #fb6f92;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-ms-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: #eac4d5;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #fb6f92;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #fb6f92;
+}

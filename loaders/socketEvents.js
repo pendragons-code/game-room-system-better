@@ -7,7 +7,7 @@ const creatorsOfRooms = new Set();
 const playersInRooms = new Map();
 
 const rooms = {};
-modue.exports.rooms = rooms;
+module.exports.rooms = rooms;
 
 io.on("connection", (socket) => {
 
@@ -16,17 +16,19 @@ io.on("connection", (socket) => {
 		try {
 			let playerID = socket.id;
 			let currentRoom = rooms[roomID]; // i don't want to pollute the global
-			if(!currentRoom) return socket.emit("This room does not exist.");
+			console.log(rooms)
+			if(!currentRoom) return socket.emit("alert", "This room does not exist.");
 			if(currentRoom.gameState !== "waiting") return socket.emit("alert", "This room has already started the game!");
-			if(currentRoom.playerNumber.length >= config.maxPlayersPerRoom) return socket.emit("alert", "This room has reached the max capacity");
+			if(currentRoom.players.size >= config.maxPlayersPerRoom) return socket.emit("alert", "This room has reached the max capacity");
 			if(playersInRooms.has(playerID)) return socket.emit("alert", "You are already in this room!");
 			socket.join(roomID);
 			currentRoom.addPlayer(playerID);
 			socket.emit("joinRoomAcknowledgement");
-			console.log(`${playerID} joined ${currentRoom}`);
-			return playersInRooms.set([playerID, roomID]);
+			console.log(`${playerID} joined ${JSON.stringify(currentRoom.id)}`);
+			playersInRooms.set(playerID, roomID);
+			return;
 		} catch(error) {
-			logError(error, `Error in joining room!\nsocketid: ${playerID}\nroomID: ${currentRoom}`);
+			logError(error, `Error in joining room!`);
 		}
 	});
 
@@ -34,6 +36,7 @@ io.on("connection", (socket) => {
 	socket.on("createRoom", () => {
 		try {
 			let creatorID = socket.id;
+			console.log(creatorID)
 			if(Object.keys(rooms).length >= config.maxRooms) return socket.emit("alert", "Sorry! We are experiencing high load right now and there are too many rooms! Please try again later."); // I know that we can actually just look at the length of creatorsOfRooms, but I just wanted to make sure that we do not have any ghost rooms
 			if(creatorsOfRooms.has(creatorID)) return socket.emit("alert", "You already created a room!");
 			let genID = generateRoomID(creatorID.substring(0, 5));
@@ -43,10 +46,10 @@ io.on("connection", (socket) => {
 			socket.emit("roomID", genID);
 			socket.join(genID);
 			console.log(`${creatorID} created ${genID}`);
-			playersInRooms.set([creatorID, genID]);
+			playersInRooms.set(creatorID, genID);
 			socket.emit("createSuccess"); // might consider using some .then and .catch around
 		} catch(error) {
-			logError(error, `Error in creating room!\ngenID: ${genID}\nsocketID: ${creatorID}`);
+			logError(error, `Error in creating room!`);
 		}
 	});
 

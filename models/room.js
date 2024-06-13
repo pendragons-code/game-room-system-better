@@ -5,13 +5,14 @@ class Room {
 	constructor(creatorID, roomID) {
 		let currentTime = new Date();
 		let endCreationTime = new Date(currentTime.getTime());
-		endCreationTime.setHours(currentTime.getHours + maxExistenceDurationHours);
+		endCreationTime.setHours(currentTime.getHours() + maxExistenceDurationHours);
 		let friendlyEndTime = currentDateTime("convert", endCreationTime);
 
 		// defining the room
+		this.roomID = roomID,
 		this.creator = creatorID,
 		this.gameState = "waiting",
-		this.players = new Map([creatorID, "player1"]),
+		this.players = new Map(),
 		this.createdTime = "",
 		this.totalPlayerCount = 1, // note that this is used to keep track of playerNumbers and names, this number does not change if a player leaves.
 		this.createdTime = currentTime,
@@ -19,6 +20,8 @@ class Room {
 		this.startGameTime = "",
 		this.playersThatLost = [],
 		this.winner = "";
+
+		this.players.set(creatorID, "player1");
 	}
 
 	// info transfer
@@ -41,7 +44,6 @@ class Room {
 	idToIndex(playerID) {
 		return this.players.get(playerID);
 	}
-
 	// gives an array of all online players, this is useful at the start of matches and more
 	currentOnlinePlayers() {
 		let currentPlayerNumberOnline = [];
@@ -60,7 +62,7 @@ class Room {
 
 	addPlayer(playerID) {
 		this.totalPlayerCount += 1;
-		this.players.set([playerID, `player${this.totalPlayerCount}`]);
+		this.players.set(playerID, `player${this.totalPlayerCount}`);
 		// I know that technicall we can just send the total playercount and let the frontend javascript figure it out, but during testing i got very inconsistent behaviour and I am at the verge of murdering myself
 		let playerNumberOfNewUser = this.idToIndex(playerID);
 		this.sendToPlayer("whoAmI", { playerNumber: playerNumberOfNewUser });

@@ -4,17 +4,19 @@ const socketio = require("socket.io");
 const helmet = require("helmet");
 const requestIp = require("request-ip");
 const { join } = require("path");
+const { appendFile } = require("fs");
 const middleWares = require("../config/rateLimit.js");
 const routeManager = require("./route.js");
+
+const app = express();
+const server = http.createServer(app);
+global.io = socketio(server);
 
 require("./socketEvents.js");
 require("../utils/currentDateTime.js");
 require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 
-const app = express();
-const server = http.createServer(app);
 const port = process.env.port || 3000;
-global.io = socketio(server);
 
 const { QuickDB } = require("quick.db");
 global.db = new QuickDB({ filePath: "DATABASE/Database.sqlite" });
@@ -43,11 +45,10 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use("trust proxy", true);
+// app.set("trust proxy", true);
 app.use(express.static(join(__dirname, "../client/public")));
-
 app.use(function(req, res) {
-	res.sendFile("../client/public/html/404.html");
+	res.sendFile(join(__dirname, "../client/public/html/index.html"));
 });
 
 app.use("/", routeManager);

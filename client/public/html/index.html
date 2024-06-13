@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Room manager!</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/client.js"></script>
+</head>
+
+<body>
+	<div class="gameSettings">
+		<input autocomplete="off" id="roomIDValue" placeholder="Join room!"></input>
+		<button id="joinRoomBtn">Join!</button>
+		<button id="createRoomBtn">Create Room</button>
+
+		<a href="http://pendragonscode.xyz/">
+			<button id="home">Main Site</button>
+		</a>
+		<a href="https://ko-fi.com/pendragonscode/">
+			<button id="home">Donate</button>
+		</a>
+	</div>
+
+
+	<div class="roomDets" id="hiddenRoomDetails" style="display: none;">
+		<div id="room">Room ID:</div>
+		<div id="roomID"></div>
+	</div>
+
+	<div class="gamePlay">
+		<div id="message"></div>
+		<div id="intro">
+			<h1>Tap First!</h1>
+		</div>
+		<div id="table"></div>
+		<div id="countdown"></div>
+	</div>
+
+</body>
+
+</html>
