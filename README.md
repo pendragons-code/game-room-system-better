@@ -14,3 +14,7 @@ npm i
 mkdir Logs DATABASE
 node .
 ```
+
+# Why you should not use this project
+1) data structure: the data structures for many things are, sad to say, pretty bad
+2) a lot of things were redundant and were only done because i just needed a working prototype for something and I was working on this in a rush
