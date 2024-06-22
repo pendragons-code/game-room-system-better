@@ -32,7 +32,7 @@ class Room {
 
 	sendToPlayer(playerID, eventName, details) {
 		if(!details) return io.to(playerID).emit(eventName);
-		return io.to(`${playerID}`).emit(eventName, details);
+		return io.to(playerID).emit(eventName, details);
 	}
 
 	// generic player manipulation
