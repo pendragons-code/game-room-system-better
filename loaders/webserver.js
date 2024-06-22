@@ -47,11 +47,11 @@ app.use((req, res, next) => {
 
 // app.set("trust proxy", true);
 app.use(express.static(join(__dirname, "../client/public")));
+app.use("/", routeManager);
 app.use(function(req, res) {
 	res.sendFile(join(__dirname, "../client/public/html/index.html"));
 });
 
-app.use("/", routeManager);
 
 server.listen((port), async () => {
 	console.log(`Hanging onto dear life at ${process.pid}\nCurrently listening at http://localhost:${port}!`);
