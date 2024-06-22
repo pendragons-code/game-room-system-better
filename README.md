@@ -1,8 +1,8 @@
 # game-room-system-better
 This is a simple web app project that emulates the behaviour of online games with room systems.
 
-# why a new repo
-The original repo was a quickly and horribly made, while being essentially a wrongly skimmed down version of an implemented system. I also just wanted to start from fresh and just stop using something stupid.
+# So erm...
+There will be a v3, this is because this project is meant to be a proof of concept, the room model is very broken and player iteration can be done MUCH better. I might just end up using plain objects.
 
 # completeness
 technically completed, not sure if i wanna add more features
