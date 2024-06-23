@@ -70,7 +70,7 @@ class Room {
 	}
 
 	removePlayer(playerID) {
-		this.players.delete(playerID);
+		delete this.players[`${playerID}`];
 		this.broadcast("playerLeftRoom", { playerNumber: this.idToIndex(playerID) });
 		this.currentOnlinePlayers();
 		if(this.players.size() < 2 && this.gameState === "running") {
